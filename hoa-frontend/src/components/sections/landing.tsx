@@ -5,12 +5,10 @@ import {
   Bell, 
   CreditCard, 
   Calendar, 
-  Users, 
-  Shield, 
   Settings,
   FileText,
-  Building,
-  ChevronRight
+  ChevronRight,
+  LogIn
 } from "lucide-react";
 
 const announcements = [
@@ -41,29 +39,32 @@ const quickActions = [
   { icon: FileText, title: "Documents", description: "By-laws and policies", color: "bg-purple-500" },
 ];
 
-const modules = [
-  { icon: Users, title: "Governance & Administration", description: "Board meetings, by-laws, and policies" },
-  { icon: Building, title: "Facilities & Infrastructure", description: "Common areas, utilities, and bookings" },
-  { icon: Shield, title: "Security & Safety", description: "Access control and emergency procedures" },
-  { icon: Settings, title: "Maintenance & Services", description: "Repair requests and vendor management" },
-  { icon: CreditCard, title: "Finance & Transparency", description: "Dues payment and financial reports" },
-  { icon: Calendar, title: "Community Engagement", description: "Events, programs, and feedback" },
-];
+interface LandingSectionProps {
+  onLoginClick: () => void;
+}
 
-export function DashboardSection() {
+export function LandingSection({ onLoginClick }: LandingSectionProps) {
   return (
     <section className="py-16 bg-community-light">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Community Dashboard
+            Community Overview
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Access all community services and stay connected with your neighbors
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
+            Stay connected with your community. Sign in to access all services and manage your account.
           </p>
+          <Button 
+            onClick={onLoginClick}
+            size="lg" 
+            className="bg-community-blue hover:bg-community-blue/90"
+          >
+            <LogIn className="h-4 w-4 mr-2" />
+            Sign In to Access Full Dashboard
+          </Button>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Announcements */}
           <div className="lg:col-span-2">
             <Card className="shadow-medium">
@@ -92,62 +93,48 @@ export function DashboardSection() {
                     <ChevronRight className="h-4 w-4 text-muted-foreground" />
                   </div>
                 ))}
-                <Button variant="outline" className="w-full">
-                  View All Announcements
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Quick Actions */}
-          <div>
-            <Card className="shadow-medium">
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>Common tasks and services</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {quickActions.map((action, index) => (
-                  <Button
-                    key={index}
-                    variant="ghost"
-                    className="w-full justify-start h-auto p-4 hover:bg-accent"
-                  >
-                    <div className={`h-10 w-10 rounded-lg ${action.color} flex items-center justify-center mr-3`}>
-                      <action.icon className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <div className="font-semibold">{action.title}</div>
-                      <div className="text-xs text-muted-foreground">{action.description}</div>
-                    </div>
+                <div className="text-center p-4 border rounded-lg bg-muted/50">
+                  <p className="text-sm text-muted-foreground mb-2">Sign in to view all announcements and participate in community discussions</p>
+                  <Button variant="outline" onClick={onLoginClick}>
+                    Sign In
                   </Button>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Module Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((module, index) => (
-            <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth cursor-pointer group">
-              <CardContent className="p-6">
-                <div className="flex items-start space-x-4">
-                  <div className="h-12 w-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-spring">
-                    <module.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-2 group-hover:text-community-blue transition-smooth">
-                      {module.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {module.description}
-                    </p>
-                  </div>
                 </div>
               </CardContent>
             </Card>
-          ))}
+          </div>
+
+          {/* Quick Actions Preview */}
+          <div>
+            <Card className="shadow-medium">
+              <CardHeader>
+                <CardTitle>Available Services</CardTitle>
+                <CardDescription>Sign in to access these services</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {quickActions.map((action, index) => (
+                  <div
+                    key={index}
+                    className="w-full p-4 rounded-lg border bg-muted/30 opacity-75"
+                  >
+                    <div className="flex items-center">
+                      <div className={`h-10 w-10 rounded-lg ${action.color} flex items-center justify-center mr-3`}>
+                        <action.icon className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="text-left">
+                        <div className="font-semibold">{action.title}</div>
+                        <div className="text-xs text-muted-foreground">{action.description}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="text-center pt-4">
+                  <Button onClick={onLoginClick} className="w-full">
+                    Sign In to Access Services
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Building2, Calendar } from "lucide-react";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onLoginClick?: () => void;
+}
+
+export function HeroSection({ onLoginClick }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden">
       {/* Background gradient */}
@@ -14,7 +18,7 @@ export function HeroSection() {
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Welcome to
             <span className="block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              Harmony Heights
+              Maryhomes
             </span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed">
@@ -22,10 +26,14 @@ export function HeroSection() {
             modern amenities, and exceptional living.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-community-navy hover:bg-blue-50 shadow-medium">
+            <Button 
+              size="lg" 
+              className="bg-white text-community-navy hover:bg-blue-50 shadow-medium"
+              onClick={onLoginClick}
+            >
               Resident Portal
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            <Button size="lg" className="bg-white text-community-navy hover:bg-blue-50 shadow-medium">
               View Announcements
             </Button>
           </div>

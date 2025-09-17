@@ -13,7 +13,7 @@ export function Footer() {
               </div>
               <div>
                 <h3 className="text-lg font-bold">CommunityCare</h3>
-                <p className="text-sm text-blue-200">Harmony Heights Subdivision</p>
+                <p className="text-sm text-blue-200">Maryhomes Subdivision</p>
               </div>
             </div>
             <p className="text-blue-200 leading-relaxed mb-6">
@@ -23,7 +23,7 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-community-green" />
-                <span>123 Harmony Heights Drive, Community City</span>
+                <span>123 Maryhomes Drive, Community City</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-community-green" />
@@ -62,7 +62,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-blue-800 mt-8 pt-8 text-center text-sm text-blue-200">
-          <p>&copy; 2024 Harmony Heights Subdivision. All rights reserved. | Managed with CommunityCare Platform</p>
+          <p>&copy; 2024 Maryhomes Subdivision. All rights reserved. | Managed with CommunityCare Platform</p>
         </div>
       </div>
     </footer>

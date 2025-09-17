@@ -14,16 +14,17 @@ export function Header() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">CommunityCare</h1>
-              <p className="text-xs text-muted-foreground">Harmony Heights Subdivision</p>
+              <p className="text-xs text-muted-foreground">Maryhomes Subdivision</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex">
+          {/* <div className="hidden md:flex">
             <Navigation />
-          </div>
+          </div> */}
 
           {/* Right Actions */}
+          
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="sm" className="h-9 w-9 p-0">
               <Bell className="h-4 w-4" />
