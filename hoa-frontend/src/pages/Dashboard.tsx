@@ -351,7 +351,7 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background flex relative">
+    <div className="h-screen bg-background flex relative overflow-hidden">
       {/* Mobile overlay */}
       {isMobile && sidebarOpen && (
         <div 
@@ -363,10 +363,10 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
       {/* Sidebar */}
       <div className={`
         ${isMobile 
-          ? `fixed left-0 top-0 h-full z-50 transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-80`
-          : `${sidebarOpen ? 'w-80' : 'w-16'} transition-all duration-300`
+          ? `fixed left-0 top-0 h-full z-50 transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} w-full`
+          : `${sidebarOpen ? 'w-80' : 'w-16'} transition-all duration-300 h-screen flex-shrink-0`
         } 
-        bg-white border-r shadow-sm flex flex-col
+        bg-white border-r shadow-sm flex flex-col overflow-hidden
       `}>
         {/* Header */}
         <div className="p-4 border-b">
@@ -508,9 +508,9 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 flex flex-col min-h-screen ${isMobile ? 'w-full' : ''}`}>
+      <div className={`flex-1 flex flex-col h-screen ${isMobile ? 'w-full' : ''}`}>
         {/* Top Bar */}
-        <header className="bg-white border-b px-4 sm:px-6 py-4">
+        <header className="bg-white border-b px-4 sm:px-6 py-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {isMobile && (
@@ -565,11 +565,11 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 p-3 sm:p-6 overflow-y-auto overflow-x-hidden">
           {activeModule === "dashboard" ? (
-            <div className="space-y-8">
+            <div className="space-y-4 sm:space-y-8">
               {/* Stats Cards */}
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 <Card className="shadow-soft">
                   <CardContent className="p-6 text-center">
                     <div className="text-3xl font-bold text-community-blue mb-2">
@@ -636,36 +636,36 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
               </Card>
             </div>
           ) : activeModule === "Finance & Transparency" ? (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Payment Summary Cards */}
-              <div className="grid md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 <Card>
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-green-600 mb-1">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-xl sm:text-2xl font-bold text-green-600 mb-1">
                       {formatCurrency(paymentDues.filter(p => p.status === 'paid').reduce((sum, p) => sum + p.amount, 0))}
                     </div>
                     <div className="text-sm text-muted-foreground">Total Paid</div>
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-orange-600 mb-1">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-xl sm:text-2xl font-bold text-orange-600 mb-1">
                       {formatCurrency(paymentDues.filter(p => p.status === 'pending').reduce((sum, p) => sum + p.amount, 0))}
                     </div>
                     <div className="text-sm text-muted-foreground">Pending</div>
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-red-600 mb-1">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-xl sm:text-2xl font-bold text-red-600 mb-1">
                       {formatCurrency(paymentDues.filter(p => p.status === 'overdue').reduce((sum, p) => sum + p.amount, 0))}
                     </div>
                     <div className="text-sm text-muted-foreground">Overdue</div>
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-community-blue mb-1">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-xl sm:text-2xl font-bold text-community-blue mb-1">
                       {paymentDues.length}
                     </div>
                     <div className="text-sm text-muted-foreground">Total Records</div>
@@ -783,8 +783,8 @@ export default function Dashboard({ userEmail, onLogout }: DashboardProps) {
                     </Dialog>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <Table>
+                <CardContent className="overflow-x-auto">
+                  <Table className="min-w-full">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Description</TableHead>
